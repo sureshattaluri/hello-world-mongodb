@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.google.cloud.artifactregistry.gradle-plugin' version '2.2.0'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name 'artifact-store'
+        url='artifactregistry://asia-south1-maven.pkg.dev/pc-artifact-registry/gcpart-planton-cloud-prod-main-maven'
+    }
+}
+
+dependencies {
+    implementation 'org.mongodb:mongodb-driver-sync:4.9.0'
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+    implementation 'cloud.planton:apis:v0.1.13'
+    implementation 'com.google.protobuf:protobuf-java-util:3.24.0'
+}
+
+application {
+    mainClass = 'com.example.hellomongodb.HelloMongoDB'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
